@@ -39,7 +39,7 @@ function processDirectory(dir) {
       let stats = fs.statSync(`${dir}/${f}`);
       let suffix;
        
-      if(stats.isDirectory()) {
+      if(stats.isDirectory() && recursive) {
         processDirectory(`${dir}/${f}`);
         return;
       } else if(!stats.isFile()) {
