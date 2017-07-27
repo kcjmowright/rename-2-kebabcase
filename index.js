@@ -27,7 +27,7 @@ function processDirectory(dir) {
   console.log(`Reading contents of "${dir}"...`);
   fs.readdir(dir, (err, files) => {
     if(err) {
-      console.log(e);
+      console.log(err);
       return;
     } else if(_.isUndefined(files) || !files.length) {
       console.log(`no files found in ${dir}`);
@@ -39,12 +39,6 @@ function processDirectory(dir) {
       let stats = fs.statSync(`${dir}/${f}`);
       let suffix;
        
-      if(stats.isDirectory() && recursive) {
-        processDirectory(`${dir}/${f}`);
-        return;
-      } else if(!stats.isFile()) {
-        return;
-      }
       if(idx >= 0) {
         suffix = f.substring(f.lastIndexOf('.'));
         renamed = `${_.kebabCase(f.substring(0, idx))}${suffix}`;
@@ -55,6 +49,10 @@ function processDirectory(dir) {
       fs.rename(`${dir}/${f}`, `${dir}/${renamed}`, e => {
         if(e) {
           console.log(e);
+          return;
+        }
+        if(stats.isDirectory() && recursive) {
+          processDirectory(`${dir}/${renamed}`);
         }
       });
     });
