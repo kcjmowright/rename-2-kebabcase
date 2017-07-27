@@ -8,7 +8,6 @@ process.argv.forEach((val, idx) => {
   if(idx < 2) {
     return;
   }
-  console.log(`argument ${idx}: ${val}`);
   switch(val) {
     case '-r':
       recursive = true;
@@ -27,7 +26,10 @@ directories.forEach(dir => processDirectory(dir));
 function processDirectory(dir) {
   console.log(`Reading contents of "${dir}"...`);
   fs.readdir(dir, (err, files) => {
-    if(_.isUndefined(files) || !files.length) {
+    if(err) {
+      console.log(e);
+      return;
+    } else if(_.isUndefined(files) || !files.length) {
       console.log(`no files found in ${dir}`);
       return;
     }

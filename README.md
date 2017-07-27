@@ -22,7 +22,7 @@ node rename-2-kebabcase -r dir1 path-to-dir2
 ### Options
 
 - `-r` Recursive
-- paths to one or more directories.
+- paths to one or more directories.  If no directories are given then it assumes current working directory.
 
  
 
