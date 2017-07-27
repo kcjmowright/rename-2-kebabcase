@@ -1,0 +1,14 @@
+{
+  "name": "rename-2-kebabcase",
+  "version": "1.0.0",
+  "description": "Renames files in a given folder to kebab-case",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jwright",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
